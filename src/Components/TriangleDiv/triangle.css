@@ -1,0 +1,17 @@
+.triangle-carrier {
+    height: 0;
+    border-bottom: 7pc solid #1c1c2b;
+    ;
+    border-left: 23pc solid #073501;
+    transition: height 1s ease-in-out;
+    animation: expand 1.2s;
+}
+
+@keyframes expand {
+    from {
+        border-bottom: 4pc solid #3232a9;
+    }
+    to {
+        border-bottom: 7pc solid #1c1c2b;
+    }
+}
