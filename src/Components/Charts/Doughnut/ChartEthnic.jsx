@@ -22,7 +22,17 @@ ChartJS.register(
   Legend
 );
 
-function ChartEthnic() {
+function ChartEthnic({ config}) {
+  useEffect(()=>{
+    const bar = document.querySelector(".cross-div");
+    const nav = document.querySelector("nav");
+    const navWrapper = document.querySelector(".nav-wrapper");
+      bar.classList.remove("bar");
+      nav.classList.remove("laynav");
+      navWrapper.classList.remove("wrapperOn");
+  },[])
+
+  const { labels, datasets, chartText, paragraph } = config;
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -30,28 +40,22 @@ function ChartEthnic() {
 
   const chart = () => {
     setChartData({
-      labels: ["Black", "Coloured", "White", "Asian"],
+      labels,
       datasets: [
-        {
-          label: "Ethnic Groups",
-          data: [80.7, 8.8, 7.9, 2.6],
-          backgroundColor: [
-            "rgb(255, 99, 132)",
-            "rgb(54, 162, 235)",
-            "rgb(255, 205, 86)",
-            "rgb(100, 50, 27)",
-          ],
-          hoverOffset: 4,
-        },
+        datasets,
       ],
     });
     setChartOptions({
       responsive: true,
       plugins: {
         legend: {
+          position: "left",
+        },
+        title: {
+          display: true,
+          text: chartText,
           position: "bottom",
         },
-        title: { display: true, text: "Ethnic Groups" },
       },
     });
   };
@@ -66,7 +70,7 @@ function ChartEthnic() {
       {toggleState ? (
         <Doughnut options={chartOptions} data={chartData} />
       ) : null}
-      {toggleState ? <OtherDetails /> : null}
+      {toggleState ? <OtherDetails paragraph={paragraph} /> : null}
     </div>
   );
 }
