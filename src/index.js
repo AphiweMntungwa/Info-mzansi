@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Triangle from "./Components/TriangleDiv/Triangle";
 import ChartEthnic from "./Components/Charts/Doughnut/ChartEthnic";
+import BarChart from "./Components/Charts/Doughnut/Bar chart/Bar";
 import Provinces from "./Components/Provinces/Provinces";
 import { homeConfig, provinceConfig } from "./props";
 
