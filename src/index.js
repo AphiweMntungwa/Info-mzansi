@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -9,7 +9,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import Triangle from "./Components/TriangleDiv/Triangle";
 import ChartEthnic from "./Components/Charts/Doughnut/ChartEthnic";
-import BarChart from "./Components/Charts/Doughnut/Bar chart/Bar";
 import Provinces from "./Components/Provinces/Provinces";
 import { homeConfig, provinceConfig } from "./props";
 
@@ -48,8 +47,8 @@ ReactDOM.render(
         element={
           <Provider store={store}>
             <App>
-              <Triangle config={homeConfig}/>
-              <ChartEthnic config={config} />
+              <Triangle config={homeConfig} />
+              <ChartEthnic code='cntr' config={config} />
             </App>
           </Provider>
         }
@@ -59,7 +58,7 @@ ReactDOM.render(
         element={
           <Provider store={store}>
             <App>
-              <Triangle config={provinceConfig}/>
+              <Triangle config={provinceConfig} />
               <Provinces />
             </App>
           </Provider>

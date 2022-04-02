@@ -1,8 +1,22 @@
 import React, { useEffect } from "react";
 import "./provinces.css";
 import ChartEthnic from "../Charts/Doughnut/ChartEthnic";
+import axios from "axios";
 
 function Provinces() {
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/South Africa/kwaZulu-Natal")
+      .then((res) => console.log(res))
+      .catch((e) => console.log("error on province call", e));
+
+    const bar = document.querySelector(".cross-div");
+    const nav = document.querySelector("nav");
+    const navWrapper = document.querySelector(".nav-wrapper");
+    bar.classList.remove("bar");
+    nav.classList.remove("laynav");
+    navWrapper.classList.remove("wrapperOn");
+  }, []);
   const config = {
     labels: ["black", "Coloured", "Asian", "White"],
     datasets: {

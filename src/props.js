@@ -1,3 +1,10 @@
+import axios from "axios"
+
+export let configR = () => {
+    axios.get('http://localhost:3001/south-africa').then(response => {
+        return response.data;
+    }).catch(e => console.log('axios error on props', e))
+}
 export const homeConfig = {
     name: "South Africa",
     label: "ZAR",

@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import Sidebar from "./Components/Navbars/Sidebar/Sidebar";
 
 function App({children}) {
+
   return (
     <Provider store={store}>
       <div className="App">

@@ -22,15 +22,15 @@ function Sidebar() {
 
   const dropProps = {
     provinces: [
-      {name : "KWAZULU-NATAL", link: "kzn"},
-      {name : "LIMPOMPO", link: "lp"},
-      {name : "NORTH WEST", link: "nw"},
-      {name : "NOTHERN CAPE", link: "np"},
+      {name : "KWAZULU-NATAL", link: "/kzn"},
+      {name : "LIMPOMPO", link: "/lp"},
+      {name : "NORTH WEST", link: "/nw"},
+      {name : "NOTHERN CAPE", link: "/np"},
       {name : "GAUTENG", link: "gp"},
-      {name : "EASTERN CAPE", link: "ec"},
-      {name : "WESTERN CAPE", link: "wc"},
-      {name : "FREE STATE", link: "fs"},
-      {name : "MPUMALANGA", link: "mp"},
+      {name : "EASTERN CAPE", link: "/ec"},
+      {name : "WESTERN CAPE", link: "/wc"},
+      {name : "FREE STATE", link: "/fs"},
+      {name : "MPUMALANGA", link: "/mp"},
     ],
     municipalities: [
       "METROPOLITAN",

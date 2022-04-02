@@ -1,4 +1,4 @@
-export { TOGGLE_BURGER }
-from "./topbar/topbarTypes";
-export { TOGGLED_BAR }
-from "./toggledbar/toggledTypes";
+export const TOGGLE_BURGER = 'TOGGLE_BURGER'
+export const FETCH_MODE_REQ = 'FETCH_MODE_REQ'
+export const FETCH_MODE_SUCCESS = 'FETCH_MODE_SUCCESS'
+export const FETCH_MODE_FAILURE = 'FETCH_MODE_FAILURE'

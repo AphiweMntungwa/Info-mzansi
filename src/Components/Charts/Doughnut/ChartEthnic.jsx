@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "./chart.css";
 import OtherDetails from "./OtherDetails/OtherDetails";
+import axios from "axios";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,15 +24,15 @@ ChartJS.register(
   Legend
 );
 
-function ChartEthnic({ config}) {
-  useEffect(()=>{
+function ChartEthnic({ config, code }) {
+  useEffect(() => {
     const bar = document.querySelector(".cross-div");
     const nav = document.querySelector("nav");
     const navWrapper = document.querySelector(".nav-wrapper");
-      bar.classList.remove("bar");
-      nav.classList.remove("laynav");
-      navWrapper.classList.remove("wrapperOn");
-  },[])
+    bar.classList.remove("bar");
+    nav.classList.remove("laynav");
+    navWrapper.classList.remove("wrapperOn");
+  }, []);
 
   const { labels, datasets, chartText, paragraph } = config;
   const [chartData, setChartData] = useState({
@@ -41,9 +43,7 @@ function ChartEthnic({ config}) {
   const chart = () => {
     setChartData({
       labels,
-      datasets: [
-        datasets,
-      ],
+      datasets: [datasets],
     });
     setChartOptions({
       responsive: true,
@@ -62,6 +62,13 @@ function ChartEthnic({ config}) {
 
   useEffect(() => {
     chart();
+    if (code == "cntr") {
+      axios.get("http://localhost:3001/South Africa")
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((e) => console.log("axios error", e));
+    }
   }, []);
   const toggleState = useSelector((state) => state.topbar.toggler);
 

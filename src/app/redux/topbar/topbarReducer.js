@@ -1,4 +1,4 @@
-import { TOGGLE_BURGER } from "./topbarTypes";
+import { TOGGLE_BURGER } from "../actionConstants";
 
 const initialState = {
     toggler: true
