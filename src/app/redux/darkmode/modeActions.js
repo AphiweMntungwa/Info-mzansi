@@ -7,10 +7,10 @@ export const fetchModeReq = () => {
         type: FETCH_MODE_REQ
     }
 }
-export const fetchModeSuccess = darkMode => {
+export const fetchModeSuccess = data => {
     return {
         type: FETCH_MODE_SUCCESS,
-        payload: darkMode
+        payload: data.darkMode
     }
 }
 export const fetchModeFailure = error => {
@@ -20,10 +20,10 @@ export const fetchModeFailure = error => {
     }
 }
 
-const changeMode = () => {
+export const changeMode = () => {
     return (dispatch) => {
-        dispatch(fetchModeReq);
-        axios.post('localhost:3001/darkMode', {
+        dispatch(fetchModeReq());
+        axios.post('http://localhost:3001/darkMode', {
                 darkMode: true
             }).then(res => {
                 dispatch(fetchModeSuccess(res.data));

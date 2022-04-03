@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./sidebar.css";
 import "boxicons";
 import DropList from "./Entities/DropList";
+import { changeMode } from "../../../app/redux/darkmode/modeActions";
 
 function Sidebar() {
   const toggleState = useSelector((state) => state.topbar.toggler);
@@ -22,26 +23,22 @@ function Sidebar() {
 
   const dropProps = {
     provinces: [
-      {name : "KWAZULU-NATAL", link: "/kzn"},
-      {name : "LIMPOMPO", link: "/lp"},
-      {name : "NORTH WEST", link: "/nw"},
-      {name : "NOTHERN CAPE", link: "/np"},
-      {name : "GAUTENG", link: "gp"},
-      {name : "EASTERN CAPE", link: "/ec"},
-      {name : "WESTERN CAPE", link: "/wc"},
-      {name : "FREE STATE", link: "/fs"},
-      {name : "MPUMALANGA", link: "/mp"},
+      { name: "KWAZULU-NATAL", link: "/kzn" },
+      { name: "LIMPOMPO", link: "/lp" },
+      { name: "NORTH WEST", link: "/nw" },
+      { name: "NOTHERN CAPE", link: "/np" },
+      { name: "GAUTENG", link: "gp" },
+      { name: "EASTERN CAPE", link: "/ec" },
+      { name: "WESTERN CAPE", link: "/wc" },
+      { name: "FREE STATE", link: "/fs" },
+      { name: "MPUMALANGA", link: "/mp" },
     ],
-    municipalities: [
-      "METROPOLITAN",
-      "DISTRICT",
-      "LOCAL"
-    ],
-    cities:[
-      "Joburg",
-      "Durban",
-      "Cape Town"
-    ]
+    municipalities: ["METROPOLITAN", "DISTRICT", "LOCAL"],
+    cities: ["Joburg", "Durban", "Cape Town"],
+  };
+  const dispatch = useDispatch();
+  const handleDispatch = () => {
+    dispatch(changeMode())
   };
 
   return (
@@ -53,7 +50,12 @@ function Sidebar() {
         </li>
         <li onClick={handleClass} id="1">
           Provinces <box-icon name="chevron-down"></box-icon>
-          <span><DropList dropProps={dropProps.provinces} /></span>
+          <span>
+            <DropList dropProps={dropProps.provinces} />
+          </span>
+        </li>
+        <li onClick={() => handleDispatch()}>
+          Dark Mode <box-icon name="caret-left-circle"></box-icon>
         </li>
         {/* <li onClick={handleClass} id="2">
           Municipalities <box-icon name="chevron-down"></box-icon>

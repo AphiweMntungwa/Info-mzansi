@@ -2,27 +2,29 @@ import { FETCH_MODE_REQ, FETCH_MODE_SUCCESS, FETCH_MODE_FAILURE } from "../actio
 
 const initialState = {
     loading: false,
-    dark_mode: false,
+    darkMode: false,
     error: ''
 }
 
-const modeReducer = (state = initialState, action) => {
-    switch (action) {
+const modeReducer = (state = initialState, { payload, type }) => {
+    switch (type) {
         case FETCH_MODE_REQ:
-            return {...state,
+            return {
+                ...state,
                 loading: true,
-                dark_mode: !state.dark_mode
             }
         case FETCH_MODE_SUCCESS:
-            return {...state,
+            return {
+                ...state,
                 loading: false,
-                dark_mode: !state.dark_mode,
+                darkMode: payload,
                 error: ''
             }
         case FETCH_MODE_FAILURE:
-            return {...state,
+            return {
+                ...state,
                 loading: false,
-                error: action.payload
+                error: payload
             }
         default:
             return state
