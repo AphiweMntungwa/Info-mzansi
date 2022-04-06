@@ -1,22 +1,23 @@
 import React, { useEffect } from "react";
 import "./provinces.css";
 import ChartEthnic from "../Charts/Doughnut/ChartEthnic";
-import axios from "axios";
+import { provinceThunk } from "../../app/redux/provinces/provinceActions";
+import { useDispatch, useSelector } from "react-redux";
 
 function Provinces() {
+  const dispatch = useDispatch();
+  const provinces = useSelector((state) => state.provinces.province);
+  
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/South Africa/kwaZulu-Natal")
-      .then((res) => console.log(res))
-      .catch((e) => console.log("error on province call", e));
-
     const bar = document.querySelector(".cross-div");
     const nav = document.querySelector("nav");
     const navWrapper = document.querySelector(".nav-wrapper");
     bar.classList.remove("bar");
     nav.classList.remove("laynav");
     navWrapper.classList.remove("wrapperOn");
+    dispatch(provinceThunk(localStorage.getItem("provinceName")));
   }, []);
+
   const config = {
     labels: ["black", "Coloured", "Asian", "White"],
     datasets: {
@@ -31,11 +32,7 @@ function Provinces() {
       hoverOffset: 4,
     },
     chartText: "Population By Ethnicity",
-    paragraph: `KwaZulu-Natal (/kwɑːˌzuːluː nəˈtɑːl/, also referred to as KZN and 
-    known as "the garden province";[5] Zulu: iKwaZulu-Natali; Xhosa: KwaZulu-Natala; 
-    Afrikaans: KwaZoeloe-Natal) is a province of South Africa that was created in 1994 
-    when the Zulu bantustan of KwaZulu ("Place of the Zulu" in Zulu) and Natal Province 
-    were merged.`,
+    paragraph: provinces && provinces[0].description,
   };
 
   return (

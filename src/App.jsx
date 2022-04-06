@@ -1,28 +1,42 @@
 import React, { useEffect } from "react";
-import logo from "./logo.svg";
-import { Counter } from "./features/counter/Counter";
 import "./App.css";
 import Topbar from "./Components/Navbars/Topbar/Topbar";
 import { store } from "./app/store";
-import { Provider, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import Sidebar from "./Components/Navbars/Sidebar/Sidebar";
+import { toggleDarkMode } from "./app/redux/darkmode/modeActions";
 
 function App({ children }) {
-  const darkMode = useSelector(state=> state.mode.darkMode)
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:3001/darkMode`)
-  //     .then((res) => {
-  //       console.log(res);
-  //       serverSessionState = res.data.darkMode;
-  //     })
-  //     .catch((e) => console.log(e));
-  // }, []);
-  const test = darkMode ? {backgroundColor:'#000015'}: {backgroundColor:'white'}
+  const dispatch = useDispatch();
+  const darkMode = useSelector((state) => state.mode.darkMode);
+
+  const locSt = (get, set) => {
+    if (set != undefined) {
+      return localStorage.setItem(get, set);
+    } else {
+      return localStorage.getItem(get);
+    }
+  };
+  
+  useEffect(() => {
+    const darkState = locSt('darkMode');
+    if (darkState === null) {
+      locSt("darkMode", 0);
+    } else if (darkState == 1) {
+      console.log('true true')
+      dispatch(toggleDarkMode(1));
+    } else if (darkState == 0) {
+      dispatch(toggleDarkMode(0));
+    }
+  }, [darkMode]);
+  
+  const themeStyle = darkMode == true
+    ? { backgroundColor: "rgb(15,14,15)", color:'white' }
+    : { backgroundColor: "white" };
 
   return (
     <Provider store={store}>
-      <div className="App" style={test}>
+      <div className="App" style={themeStyle}>
         <Topbar>
           <Sidebar />
         </Topbar>

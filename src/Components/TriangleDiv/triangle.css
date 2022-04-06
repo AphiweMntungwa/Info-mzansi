@@ -6,6 +6,11 @@
     animation: expand 1.2s;
 }
 
+.triangle_dark {
+    border-left: 23pc solid #16171b;
+    animation: disband 1.2s;
+}
+
 .header-table {
     width: 77%;
 }
@@ -22,6 +27,15 @@
     }
     to {
         border-left: 23pc solid #2840f7;
+    }
+}
+
+@keyframes disband {
+    from {
+        border-left: 12pc solid #16171b;
+    }
+    to {
+        border-left: 23pc solid #16171b;
     }
 }
 

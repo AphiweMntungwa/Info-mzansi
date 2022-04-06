@@ -84,3 +84,7 @@ li input {
         opacity: 1;
     }
 }
+
+.dark-icons {
+    fill: wheat;
+}

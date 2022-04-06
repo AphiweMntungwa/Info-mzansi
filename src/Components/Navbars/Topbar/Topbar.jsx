@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleBurger } from "../../../app/redux/topbar/topbarActions";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import RainbowText from "react-rainbow-text";
 import "./topbar.css";
 
 function Topbar({ children }) {
   const toggleState = useSelector((state) => state.topbar.toggler);
+  const darkMode = useSelector((state) => state.mode.darkMode);
   const dispatch = useDispatch();
 
   const handleNavToggle = () => {
@@ -23,13 +24,22 @@ function Topbar({ children }) {
       navWrapper.classList.remove("wrapperOn");
     }
   };
+  const navDark = darkMode
+    ? { backgroundColor: "black" }
+    : { backgroundColor: "rgb(138, 233, 233)" };
+
+    const lightCross = darkMode ? 'cross-button-dark' : ''
+    const headerLight = darkMode ? .6 : 0.2
+
+    const location = useLocation()
+    const link = location.pathname !== "/" && !toggleState ? '' : '/'
 
   return (
-    <div className="nav-wrapper">
+    <div className="nav-wrapper" style={navDark}>
       <nav>
-        <Link to={{ pathname: "/" }} style={{ textDecoration: "none" }}>
+        <Link to={{ pathname: link }} style={{ textDecoration: "none" }}>
           <h1>
-            <RainbowText lightness={0.2} saturation={1}>
+            <RainbowText lightness={headerLight} saturation={1}>
               inform-sa
             </RainbowText>
           </h1>
@@ -42,9 +52,9 @@ function Topbar({ children }) {
             handleNavToggle();
           }}
         >
-          <div className="cross-button"></div>
-          <div className="cross-button"></div>
-          <div className="cross-button"></div>
+          <div className={`cross-button ${lightCross}`}></div>
+          <div className={`cross-button ${lightCross}`}></div>
+          <div className={`cross-button ${lightCross}`}></div>
         </div>
         {children}
       </nav>

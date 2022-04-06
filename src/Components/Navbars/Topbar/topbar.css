@@ -29,6 +29,10 @@ nav {
     transition: all .4s ease-in-out;
 }
 
+.cross-button-dark {
+    background-color: white;
+}
+
 @media (max-width:532px) {
     nav {
         justify-content: space-around;

@@ -1,14 +1,14 @@
 import React from "react";
 
 function Country({config}) {
-  const {name, label, population} = config;
+  const {name, population} = config;
   return (
     <div>
       <table className="header-table">
         <tbody>
           <tr>
             <td>{name}</td>
-            <td>{label}</td>
+            <td> Country</td>
           </tr>
           <tr>
             <td>Population</td>

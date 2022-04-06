@@ -47,18 +47,18 @@ ReactDOM.render(
         element={
           <Provider store={store}>
             <App>
-              <Triangle config={homeConfig} />
+              <Triangle />
               <ChartEthnic code='cntr' config={config} />
             </App>
           </Provider>
         }
       />
       <Route
-        path="/kzn"
+        path="/province"
         element={
           <Provider store={store}>
             <App>
-              <Triangle config={provinceConfig} />
+              <Triangle provOrContr={true} />
               <Provinces />
             </App>
           </Provider>
