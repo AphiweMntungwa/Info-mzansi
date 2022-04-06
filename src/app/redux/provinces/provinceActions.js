@@ -23,7 +23,6 @@ export const provinceThunk = (name) => {
         dispatch(fetchProvinceReq);
         axios.post("http://localhost:3001/South Africa/province", { name })
             .then((res) => {
-                console.log('ers', res)
                 const prv = res.data.country[0].provinces.filter(el =>
                     el.name.toUpperCase() === res.data.province
                 )

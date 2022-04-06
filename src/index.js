@@ -10,7 +10,6 @@ import { createBrowserHistory } from "history";
 import Triangle from "./Components/TriangleDiv/Triangle";
 import ChartEthnic from "./Components/Charts/Doughnut/ChartEthnic";
 import Provinces from "./Components/Provinces/Provinces";
-import { homeConfig, provinceConfig } from "./props";
 
 const config = {
   labels: ["KZN", "EC", "WC", "Limpompo", "MP", "Gauteng", "FS", "NW", "NC"],
