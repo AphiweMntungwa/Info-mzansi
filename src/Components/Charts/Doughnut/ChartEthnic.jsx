@@ -40,9 +40,10 @@ function ChartEthnic({ config, code }) {
   });
   const [chartOptions, setChartOptions] = useState({});
 
-  const chart = () => {
+  
+  const chart= () => {
     setChartData({
-      labels,
+      labels : labels && labels.length ? labels : ['test'],
       datasets: [datasets],
     });
     setChartOptions({
@@ -62,14 +63,7 @@ function ChartEthnic({ config, code }) {
 
   useEffect(() => {
     chart();
-    if (code == "cntr") {
-      axios.get("http://localhost:3001/South Africa")
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((e) => console.log("axios error", e));
-    }
-  }, []);
+    }, [labels]);
   const toggleState = useSelector((state) => state.topbar.toggler);
 
   return (

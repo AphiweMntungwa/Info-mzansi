@@ -18,11 +18,11 @@ function Provinces() {
     dispatch(provinceThunk(localStorage.getItem("provinceName")));
   }, []);
 
-  const config = {
-    labels: ["black", "Coloured", "Asian", "White"],
+  const config = provinces.length && {
+    labels: provinces[0].raceLabels,
     datasets: {
       label: "Ethnicity By Province(%)",
-      data: [8912921, 141376, 756991, 428842],
+      data: provinces[0].populationByRace,
       backgroundColor: [
         "rgb(255, 99, 132)",
         "rgb(54, 162, 235)",
@@ -32,9 +32,10 @@ function Provinces() {
       hoverOffset: 4,
     },
     chartText: "Population By Ethnicity",
-    paragraph: provinces && provinces[0].description,
+    paragraph: provinces[0].description,
   };
 
+  console.log(config)
   return (
     <div>
       <ChartEthnic config={config} />

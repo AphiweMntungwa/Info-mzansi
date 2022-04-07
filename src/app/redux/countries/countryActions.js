@@ -24,7 +24,6 @@ export const countryThunk = (name) => {
         dispatch(fetchCountryReq);
         axios.get(`http://localhost:3001/${name}`)
             .then((res) => {
-                console.log('ers', res)
                 const prv = res.data[0]
                 dispatch(fetchCountrySuccess(prv))
             })
