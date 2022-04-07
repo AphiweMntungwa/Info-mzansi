@@ -23,8 +23,8 @@ function DropList({ dropProps }) {
               const navWrapper = document.querySelector(".nav-wrapper");
               bar.classList.remove("bar");
               nav.classList.remove("laynav");
-              navWrapper.classList.remove("wrapperOn");  
-              dispatch(provinceThunk(localStorage.getItem("provinceName")));        
+              navWrapper.classList.remove("wrapperOn");
+              el.link !== '/' && dispatch(provinceThunk(localStorage.getItem("provinceName")))        
             }}
           >
             {el.name}

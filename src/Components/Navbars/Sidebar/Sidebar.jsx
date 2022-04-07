@@ -17,10 +17,10 @@ function Sidebar() {
     const darkState = localStorage.getItem("darkMode");
     if (darkState == true) {
       localStorage.setItem("darkMode", 0);
-      dispatch(toggleDarkMode(0))
+      dispatch(toggleDarkMode(0));
     } else {
       localStorage.setItem("darkMode", 1);
-      dispatch(toggleDarkMode(1))
+      dispatch(toggleDarkMode(1));
     }
   };
 
@@ -36,6 +36,7 @@ function Sidebar() {
   };
 
   const dropProps = {
+    countries: [{ name: "South Africa", link: "/" }],
     provinces: [
       { name: "KWAZULU-NATAL", link: "/province" },
       { name: "LIMPOPO", link: "/province" },
@@ -50,30 +51,32 @@ function Sidebar() {
     municipalities: ["METROPOLITAN", "DISTRICT", "LOCAL"],
     cities: ["Joburg", "Durban", "Cape Town"],
   };
-  const darkOrLight = darkMode ? 'Light' : 'Dark'
-  const iconDark = darkMode ? 'dark-icons' : ''
+  const darkOrLight = darkMode ? "Light" : "Dark";
+  const iconDark = darkMode ? "dark-icons" : "";
 
   return (
     <div className={`side-div`} style={sideToggle}>
       <ul>
-        <li className={iconDark}> 
+        <li className={iconDark}>
           Search All Fields <input type="text" />
           <box-icon name="search-alt-2" type="solid"></box-icon>
         </li>
-        <li onClick={handleClass} id="1" className={iconDark}>
+        <li className={iconDark} onClick={handleClass} id="1">
+          Country <box-icon name="chevron-down"></box-icon>
+          <span>
+            <DropList dropProps={dropProps.countries} />
+          </span>
+        </li>
+        <li onClick={handleClass} id="2" className={iconDark}>
           Provinces <box-icon name="chevron-down"></box-icon>
           <span>
             <DropList dropProps={dropProps.provinces} />
           </span>
         </li>
         <li onClick={handleDarkMode} className={iconDark}>
-          {darkOrLight} Mode <box-icon name='brightness'></box-icon>
+          {darkOrLight} Mode <box-icon name="brightness"></box-icon>
         </li>
-        {/* <li onClick={handleClass} id="2">
-          Municipalities <box-icon name="chevron-down"></box-icon>
-          <span><DropList dropProps={dropProps.municipalities} /></span>
-        </li>
-        <li onClick={handleClass} id="3">
+        {/* <li onClick={handleClass} id="3">
           Cities <box-icon name="chevron-down"></box-icon>
           <span><DropList dropProps={dropProps.cities} /></span>
         </li>

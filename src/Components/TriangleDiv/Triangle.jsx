@@ -16,7 +16,7 @@ function Triangle({ provOrContr }) {
     dispatch(countryThunk('South Africa'))
   }, []);
 
-  const config = provOrContr && province
+  const config = provOrContr && province.length
     ? { name: province[0].name, population: province[0].populationInProv }
     : {name:country.name, population:country.population};
 
