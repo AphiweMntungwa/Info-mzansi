@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import "../chart.css";
-import OtherDetails from "../OtherDetails/OtherDetails";
+import "../Doughnut/chart.css";
+import OtherDetails from "../Doughnut/OtherDetails/OtherDetails";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,34 +22,44 @@ ChartJS.register(
   Legend
 );
 
-function BarChart({ config}) {
-  useEffect(()=>{
+function BarChart({ config }) {
+  useEffect(() => {
     const bar = document.querySelector(".cross-div");
     const nav = document.querySelector("nav");
     const navWrapper = document.querySelector(".nav-wrapper");
-      bar.classList.remove("bar");
-      nav.classList.remove("laynav");
-      navWrapper.classList.remove("wrapperOn");
-  },[])
+    bar.classList.remove("bar");
+    nav.classList.remove("laynav");
+    navWrapper.classList.remove("wrapperOn");
+  }, []);
 
-  const { labels, datasets, chartText, paragraph } = config;
+  const { labels, chartText, data } = config;
   const [chartData, setChartData] = useState({
     datasets: [],
   });
+
   const [chartOptions, setChartOptions] = useState({});
 
   const chart = () => {
     setChartData({
       labels,
       datasets: [
-        datasets,
+        {
+          data,
+          backgroundColor: [
+            "rgba(54, 162, 235, 0.8)",
+            "rgba(153, 102, 255, 0.8)",
+          ],
+          borderColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)"],
+          borderWidth: 2,
+        },
       ],
     });
+
     setChartOptions({
       responsive: true,
       plugins: {
         legend: {
-            display:false,
+          display: false,
           position: "top",
         },
         title: {
@@ -58,20 +68,19 @@ function BarChart({ config}) {
           position: "bottom",
         },
       },
+      indexAxis : 'y'
     });
   };
 
   useEffect(() => {
     chart();
-  }, []);
+  }, [labels]);
   const toggleState = useSelector((state) => state.topbar.toggler);
 
   return (
     <div className="chartDiv BarChart">
-      {toggleState ? (
-        <Bar options={chartOptions} data={chartData} />
-      ) : null}
-      {toggleState ? <OtherDetails paragraph={paragraph} /> : null}
+      {toggleState ? <Bar options={chartOptions} data={chartData} /> : null}
+      {/* {toggleState ? <OtherDetails paragraph={paragraph} /> : null} */}
     </div>
   );
 }

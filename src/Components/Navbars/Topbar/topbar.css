@@ -1,6 +1,7 @@
 nav {
     display: flex;
     flex-wrap: wrap;
+    padding-block: .5em;
 }
 
 .nav-wrapper {

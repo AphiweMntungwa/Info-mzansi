@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ChartEthnic from "../Charts/Doughnut/ChartEthnic";
+import AccordBstrap from "../Accordion/AccordBstrap";
 
 function Countries() {
     const country = useSelector(state => state.country.country)
@@ -33,6 +34,9 @@ function Countries() {
   return (
     <div>
       <ChartEthnic code='cntr' config={config} />
+      <AccordBstrap>
+          
+      </AccordBstrap>
     </div>
   );
 }

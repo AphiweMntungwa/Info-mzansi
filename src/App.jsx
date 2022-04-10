@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Topbar from "./Components/Navbars/Topbar/Topbar";
 import { store } from "./app/store";
 import { Provider, useDispatch, useSelector } from "react-redux";
@@ -30,13 +31,11 @@ function App({ children }) {
     }
   }, [darkMode]);
   
-  const themeStyle = darkMode == true
-    ? { backgroundColor: "rgb(15,14,15)", color:'white' }
-    : { backgroundColor: "white" };
+  const themeStyle = darkMode ? 'dark-app' : ''
 
   return (
     <Provider store={store}>
-      <div className="App" style={themeStyle}>
+      <div className={`App ${themeStyle}`} >
         <Topbar>
           <Sidebar />
         </Topbar>

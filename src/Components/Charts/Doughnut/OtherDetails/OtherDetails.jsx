@@ -7,7 +7,7 @@ function OtherDetails({ paragraph }) {
       <p className="country-paragraph">
         {paragraph}{" "}
         <a href="https://en.wikipedia.org/wiki/South_Africa">
-          <box-icon name="link"></box-icon> ..wiki
+           ..wiki
         </a>
       </p>
     </div>
