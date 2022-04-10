@@ -24,7 +24,6 @@ function App({ children }) {
     if (darkState === null) {
       locSt("darkMode", 0);
     } else if (darkState == 1) {
-      console.log('true true')
       dispatch(toggleDarkMode(1));
     } else if (darkState == 0) {
       dispatch(toggleDarkMode(0));

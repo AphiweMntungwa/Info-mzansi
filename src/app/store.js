@@ -4,6 +4,7 @@ import topbarReducer from './redux/topbar/topbarReducer';
 import modeReducer from './redux/darkmode/modeReducer';
 import provinceReducer from './redux/provinces/provinceReducer';
 import countryReducer from './redux/countries/countryReducer';
+import searchReducer from './redux/search/searchReducer';
 import logger from 'redux-logger'
 import thunk from 'redux-thunk';
 
@@ -13,7 +14,8 @@ export const store = configureStore({
         topbar: topbarReducer,
         mode: modeReducer,
         provinces: provinceReducer,
-        country: countryReducer
+        country: countryReducer,
+        search: searchReducer
     },
     devTools: { logger, thunk }
 });

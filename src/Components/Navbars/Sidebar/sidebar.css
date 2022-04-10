@@ -32,6 +32,34 @@
 
 li input {
     display: none;
+    width: 7pc;
+    background-color: rgb(51, 182, 138);
+    border: 1px solid black;
+    border-radius: .1em;
+}
+
+.dark-app li input {
+    border-radius: 0%;
+    background-color: rgb(16, 10, 10);
+    color: wheat;
+}
+
+.active-search input {
+    display: block;
+    animation: show-up .8s;
+}
+
+@keyframes show-up {
+    from {
+        width: 1pc;
+    }
+    to {
+        width: 7pc;
+    }
+}
+
+.active-search div {
+    display: none;
 }
 
 .side-div li span {

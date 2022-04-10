@@ -26,16 +26,14 @@ function Countries() {
         chartText: "Population by Province(%)",
         paragraph: `${country.description}`,
       };
+      const accordConfig = ['Financial Information', 'Line Chart Switch']
 
-    useEffect(()=>{
-
-    }, [])
 
   return (
     <div>
       <ChartEthnic code='cntr' config={config} />
-      <AccordBstrap>
-          
+      <AccordBstrap config={accordConfig} >
+
       </AccordBstrap>
     </div>
   );

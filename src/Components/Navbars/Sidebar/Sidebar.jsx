@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./sidebar.css";
 import "boxicons";
 import DropList from "./Entities/DropList";
 import { toggleDarkMode } from "../../../app/redux/darkmode/modeActions";
+import { searchThunk } from "../../../app/redux/search/searchActions";
 
 function Sidebar() {
   const toggleState = useSelector((state) => state.topbar.toggler);
   const darkMode = useSelector((state) => state.mode.darkMode);
+  const searchResults = useSelector((state) => state.search.searchResults);
   const dispatch = useDispatch();
 
   const sideToggle = toggleState ? { display: "none" } : { display: "block" };
   const [chevron, chevronSpin] = useState([]);
+  const [search, activateSearch] = useState(false);
+  const [searchArr, setSearchArr] = useState([]);
+  const searchInput = useRef(null);
 
   const handleDarkMode = () => {
     const darkState = localStorage.getItem("darkMode");
@@ -23,6 +28,22 @@ function Sidebar() {
       dispatch(toggleDarkMode(1));
     }
   };
+
+  useEffect(() => {
+    const { countrySearch, provinceSearch } = searchResults;
+    function addLink(arr, link) {
+      let map = arr.map((el) => ({ name: el, link }));
+      return map;
+    }
+    if (countrySearch) {
+      addLink(countrySearch.ownArr, "/");
+      addLink(provinceSearch.ownArr, "/province");
+      setSearchArr([
+        ...addLink(countrySearch.ownArr, "/"),
+        ...addLink(provinceSearch.ownArr, "/province"),
+      ]);
+    }
+  }, [searchResults]);
 
   const handleClass = (e) => {
     if (chevron.includes(e.target.id)) {
@@ -53,21 +74,40 @@ function Sidebar() {
   };
   const darkOrLight = darkMode ? "Light" : "Dark";
   const iconDark = darkMode ? "dark-icons" : "";
+  const activeSearch = search ? "active-search" : "";
+  useEffect(() => {
+    searchInput.current.focus();
+  }, [search, toggleState, darkMode]);
 
   return (
     <div className={`side-div`} style={sideToggle}>
       <ul>
-        <li className={iconDark}>
-          Search All Fields <input type="text" />
-          <box-icon name="search-alt-2" type="solid"></box-icon>
+        <li className={`search-list ${iconDark} ${activeSearch} chevronSwitch`} onClick={handleClass} id="1">
+          <div>Search All Fields</div>
+          <input
+            type="text"
+            autoFocus
+            ref={searchInput}
+            onChange={(e) => {
+              dispatch(searchThunk(e.target.value));
+            }}
+          />
+          <box-icon
+            name="search-alt-2"
+            type="solid"
+            onClick={() => activateSearch(!search)}
+          ></box-icon>
+          <span>
+            <DropList dropProps={searchArr} />
+          </span>
         </li>
-        <li className={iconDark} onClick={handleClass} id="1">
+        <li className={iconDark} onClick={handleClass} id="2">
           Country <box-icon name="chevron-down"></box-icon>
           <span>
             <DropList dropProps={dropProps.countries} />
           </span>
         </li>
-        <li onClick={handleClass} id="2" className={iconDark}>
+        <li onClick={handleClass} id="3" className={iconDark}>
           Provinces <box-icon name="chevron-down"></box-icon>
           <span>
             <DropList dropProps={dropProps.provinces} />

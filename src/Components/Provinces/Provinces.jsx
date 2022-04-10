@@ -46,12 +46,13 @@ function Provinces() {
     data: provinces[0].populationByLanguage
     ,chartText:'Population By Language(%)'
   }
-  console.log(barConfig)
+
+  const accordConfig = ['Languages By Province(%)', 'Financial Information']
 
   return (
     <div>
       <ChartEthnic config={config} />
-      <AccordBstrap>
+      <AccordBstrap config={accordConfig} >
         <BarChart config={barConfig} />
       </AccordBstrap>
     </div>

@@ -21,7 +21,7 @@ export const fetchCountryError = error => {
 
 export const countryThunk = (name) => {
     return (dispatch) => {
-        dispatch(fetchCountryReq);
+        dispatch(fetchCountryReq());
         axios.get(`http://localhost:3001/${name}`)
             .then((res) => {
                 const prv = res.data[0]
