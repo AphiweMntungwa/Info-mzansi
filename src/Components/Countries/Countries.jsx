@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ChartEthnic from "../Charts/Doughnut/ChartEthnic";
 import AccordBstrap from "../Accordion/AccordBstrap";
+import LineChart from "../Charts/Line/Line";
+import BarChart from "../Charts/Bar chart/Bar";
 
 function Countries() {
     const country = useSelector(state => state.country.country)
-    const config = {
+    const config = country.description ? {
         labels: ["KZN", "EC", "WC", "Limpompo", "MP", "Gauteng", "FS", "NW", "NC"],
         datasets: {
           label: "Population By Province(%)",
@@ -25,15 +27,31 @@ function Countries() {
         },
         chartText: "Population by Province(%)",
         paragraph: `${country.description}`,
-      };
-      const accordConfig = ['Financial Information', 'Line Chart Switch']
+      } : {}
+
+      const religionConfig = country.religions ? {
+            labels : country.religions.list,
+            data: country.religions.listData,
+            chartText:'Religion by Population.(%)'        
+      } : {}
+
+      const lineConfig = country.economy ? {
+        labels : country.economy.gdp.years,
+        data : country.economy.gdp.growth,
+        chartText: 'GDP'
+      } : {}
+
+     
 
 
   return (
     <div>
       <ChartEthnic code='cntr' config={config} />
-      <AccordBstrap config={accordConfig} >
-
+      <AccordBstrap config={{title:'Economic Growth.', key:1} }>
+        <LineChart config={lineConfig} />
+      </AccordBstrap>
+      <AccordBstrap config={{title:'Religious Breakdown.', key:2}} >
+        <BarChart config={religionConfig} />
       </AccordBstrap>
     </div>
   );

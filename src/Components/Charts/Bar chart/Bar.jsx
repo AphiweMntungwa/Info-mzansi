@@ -46,10 +46,10 @@ function BarChart({ config }) {
         {
           data,
           backgroundColor: [
-            "rgba(54, 162, 235, 0.8)",
-            "rgba(153, 102, 255, 0.8)",
+            "rgba(36, 141, 162, 0.52)",
+            "rgba(153, 102, 255, 0.6)",
           ],
-          borderColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)"],
+          borderColor: ["rgb(36, 150, 180)", "rgb(255, 159, 64)"],
           borderWidth: 2,
         },
       ],

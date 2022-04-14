@@ -24,7 +24,6 @@ export const searchThunk = (queryStr) => {
         dispatch(fetchSearchReq());
         axios.get(`http://localhost:3001/search/${queryStr}`)
             .then((res) => {
-                console.log(res.data)
                 dispatch(fetchSearchSuccess(res.data))
             })
             .catch((e) => {

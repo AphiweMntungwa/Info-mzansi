@@ -5,6 +5,7 @@ import "boxicons";
 import DropList from "./Entities/DropList";
 import { toggleDarkMode } from "../../../app/redux/darkmode/modeActions";
 import { searchThunk } from "../../../app/redux/search/searchActions";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   const toggleState = useSelector((state) => state.topbar.toggler);
@@ -79,10 +80,16 @@ function Sidebar() {
     searchInput.current.focus();
   }, [search, toggleState, darkMode]);
 
+  const spanStyleToggle = search ? {} : { display: "none" };
+
   return (
     <div className={`side-div`} style={sideToggle}>
       <ul>
-        <li className={`search-list ${iconDark} ${activeSearch} chevronSwitch`} onClick={handleClass} id="1">
+        <li
+          className={`search-list ${iconDark} ${activeSearch} chevronSwitch`}
+          onClick={handleClass}
+          id="1"
+        >
           <div>Search All Fields</div>
           <input
             type="text"
@@ -97,7 +104,7 @@ function Sidebar() {
             type="solid"
             onClick={() => activateSearch(!search)}
           ></box-icon>
-          <span>
+          <span style={spanStyleToggle}>
             <DropList dropProps={searchArr} />
           </span>
         </li>
@@ -113,6 +120,11 @@ function Sidebar() {
             <DropList dropProps={dropProps.provinces} />
           </span>
         </li>
+        <Link to={{ pathname: "/converter" }} style={{textDecoration:'none', color:'inherit'}}>
+          <li className={iconDark}>
+            Currency Converter <box-icon name="money"></box-icon>
+          </li>
+        </Link>
         <li onClick={handleDarkMode} className={iconDark}>
           {darkOrLight} Mode <box-icon name="brightness"></box-icon>
         </li>

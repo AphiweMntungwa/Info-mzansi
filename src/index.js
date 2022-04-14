@@ -11,6 +11,7 @@ import Triangle from "./Components/TriangleDiv/Triangle";
 import ChartEthnic from "./Components/Charts/Doughnut/ChartEthnic";
 import Provinces from "./Components/Provinces/Provinces";
 import Countries from "./Components/Countries/Countries";
+import Converter from "./Components/Currency/Converter";
 
 
 const history = createBrowserHistory();
@@ -36,6 +37,16 @@ ReactDOM.render(
             <App>
               <Triangle provOrContr={true} />
               <Provinces />
+            </App>
+          </Provider>
+        }
+      />
+      <Route
+        path="/converter"
+        element={
+          <Provider store={store}>
+            <App>
+              <Converter/>
             </App>
           </Provider>
         }

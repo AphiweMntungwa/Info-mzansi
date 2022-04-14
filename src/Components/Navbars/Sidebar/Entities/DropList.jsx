@@ -16,7 +16,7 @@ function DropList({ dropProps }) {
         >
           <li
             onClick={() => {
-              localStorage.setItem('provinceName', el.name)
+              localStorage.setItem('provinceName', el.name.toUpperCase())
               dispatch(toggleBurger());
               const bar = document.querySelector(".cross-div");
               const nav = document.querySelector("nav");
@@ -24,6 +24,7 @@ function DropList({ dropProps }) {
               bar.classList.remove("bar");
               nav.classList.remove("laynav");
               navWrapper.classList.remove("wrapperOn");
+              console.log(localStorage.getItem('provinceName'))
               el.link !== '/' && dispatch(provinceThunk(localStorage.getItem("provinceName")))        
             }}
           >

@@ -5,6 +5,7 @@ import BarChart from "../Charts/Bar chart/Bar";
 import { provinceThunk } from "../../app/redux/provinces/provinceActions";
 import { useDispatch, useSelector } from "react-redux";
 import AccordBstrap from "../Accordion/AccordBstrap";
+import LineChart from "../Charts/Line/Line";
 
 function Provinces() {
   const dispatch = useDispatch();
@@ -47,13 +48,15 @@ function Provinces() {
     ,chartText:'Population By Language(%)'
   }
 
-  const accordConfig = ['Languages By Province(%)', 'Financial Information']
 
   return (
     <div>
       <ChartEthnic config={config} />
-      <AccordBstrap config={accordConfig} >
+      <AccordBstrap config={{title:'Languages By Province(%)', key:1}} >
         <BarChart config={barConfig} />
+      </AccordBstrap>
+      <AccordBstrap config={{title:'Financial Information', key:2}} >
+        <LineChart />
       </AccordBstrap>
     </div>
   );
