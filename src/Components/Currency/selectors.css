@@ -1,0 +1,14 @@
+.selector-div {
+    display: flex;
+    padding: 1em;
+}
+
+.selector-div input {}
+
+.selector-div select {
+    width: 50%;
+}
+
+.arrow-span {
+    font-size: 2em;
+}

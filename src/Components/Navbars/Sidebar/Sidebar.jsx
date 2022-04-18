@@ -6,6 +6,7 @@ import DropList from "./Entities/DropList";
 import { toggleDarkMode } from "../../../app/redux/darkmode/modeActions";
 import { searchThunk } from "../../../app/redux/search/searchActions";
 import { Link } from "react-router-dom";
+import { toggleBurger } from "../../../app/redux/topbar/topbarActions";
 
 function Sidebar() {
   const toggleState = useSelector((state) => state.topbar.toggler);
@@ -81,6 +82,7 @@ function Sidebar() {
   }, [search, toggleState, darkMode]);
 
   const spanStyleToggle = search ? {} : { display: "none" };
+  const currencyDarkMode = darkMode ? { color: "white" } : { color: "inherit" };
 
   return (
     <div className={`side-div`} style={sideToggle}>
@@ -120,8 +122,19 @@ function Sidebar() {
             <DropList dropProps={dropProps.provinces} />
           </span>
         </li>
-        <Link to={{ pathname: "/converter" }} style={{textDecoration:'none', color:'inherit'}}>
-          <li className={iconDark}>
+        <Link
+          to={{ pathname: "/converter" }}
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <li
+            className={iconDark}
+            onClick={() => {
+              if (window.location.pathname !== "/converter") {
+                dispatch(toggleBurger());
+              }
+            }}
+            style={currencyDarkMode}
+          >
             Currency Converter <box-icon name="money"></box-icon>
           </li>
         </Link>
