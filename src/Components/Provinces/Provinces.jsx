@@ -39,25 +39,35 @@ function Provinces() {
   };
 
   const barConfig = provinces.length && {
-    labels : ['Afrikaans', 'English', 'IsiNdebele', 'IsiXhosa', 'IsiZulu', 'Sepedi', 'Sesotho', 'Setswana',
-      'SiSwati',
-      'Tshivenda',
-      'Xitsonga',
-  ],
-    data: provinces[0].populationByLanguage
-    ,chartText:'Population By Language(%)'
-  }
-
+    labels: [
+      "Afrikaans",
+      "English",
+      "IsiNdebele",
+      "IsiXhosa",
+      "IsiZulu",
+      "Sepedi",
+      "Sesotho",
+      "Setswana",
+      "SiSwati",
+      "Tshivenda",
+      "Xitsonga",
+    ],
+    data: provinces[0].populationByLanguage,
+    chartText: "Population By Language(%)",
+  };
+  const linkTo = provinces[0].name
+    ? `https://en.wikipedia.org/wiki/${provinces[0].name}`
+    : "";
 
   return (
     <div>
-      <ChartEthnic config={config} />
-      <AccordBstrap config={{title:'Languages By Province(%)', key:1}} >
+      <ChartEthnic config={config} linkTo={linkTo} />
+      <AccordBstrap config={{ title: "Languages In Province(%)", key: 1 }}>
         <BarChart config={barConfig} />
       </AccordBstrap>
-      <AccordBstrap config={{title:'Financial Information', key:2}} >
-        <LineChart />
-      </AccordBstrap>
+      <AccordBstrap
+        config={{ title: "Financial Information", key: 2 }}
+      ></AccordBstrap>
     </div>
   );
 }

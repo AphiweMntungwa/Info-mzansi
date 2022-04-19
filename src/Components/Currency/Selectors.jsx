@@ -14,14 +14,14 @@ function Selectors(props) {
     <div className="selector-div">
       <input
         type="number"
-        className="form-control"
+        className=""
         value={amount}
         onChange={amountChange}
       />
       <select
         name="currencies"
         value={selectedCurrency}
-        className="form-select"
+        className=""
         onChange={(e) => onCurrency(e)}
       >
         {currencyOptions.map((el) => (

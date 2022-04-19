@@ -1,18 +1,20 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { toggleBurger } from "../../app/redux/topbar/topbarActions";
+import { useSelector } from "react-redux";
 import Selectors from "./Selectors";
 import "./selectors.css";
+import CurrencyName from "./CurrencyName";
+import MoreInfo from "./MoreInfo";
 
 function Converter() {
-  const dispatch = useDispatch();
+  const toggleState = useSelector(state => state.topbar.toggler);
   const [currencyOptions, setCurrencyOptions] = useState([]);
   const [fromCurrency, setFromCurrency] = useState();
   const [toCurrency, setToCurrency] = useState();
   const [exchangeRate, setExchangeRate] = useState();
   const [amount, setAmount] = useState(1);
   const [amountFrom, setAmountFrom] = useState(true);
+  const [currencyName, setCurrencyName] = useState();
 
   let toAmount, fromAmount;
   if (amountFrom) {
@@ -66,22 +68,29 @@ function Converter() {
 
   return (
     <div className="converter">
-      Converter
-      <Selectors
-        currencyOptions={currencyOptions}
-        selectedCurrency={fromCurrency}
-        onCurrency={(e) => alert("API free plan only supports base EUR")}
-        amount={fromAmount}
-        amountChange={handleFromAmount}
+      <CurrencyName
+        currencyName={currencyName}
+        setCurrencyName={setCurrencyName}
+        toCurrency={toCurrency}
       />
-      <span className="arrow-span"> &#x021D4;</span>
-      <Selectors
-        currencyOptions={currencyOptions}
-        selectedCurrency={toCurrency}
-        onCurrency={(e) => setToCurrency(e.target.value)}
-        amount={toAmount}
-        amountChange={handleToAmount}
-      />
+      <div className="input-carrier">
+        <Selectors
+          currencyOptions={currencyOptions}
+          selectedCurrency={fromCurrency}
+          onCurrency={(e) => alert("API free plan only supports base EUR")}
+          amount={fromAmount}
+          amountChange={handleFromAmount}
+        />
+        <span className="arrow-span"> &#x021D4;</span>
+        <Selectors
+          currencyOptions={currencyOptions}
+          selectedCurrency={toCurrency}
+          onCurrency={(e) => setToCurrency(e.target.value)}
+          amount={toAmount}
+          amountChange={handleToAmount}
+        />{" "}
+      </div>
+      {toggleState && <MoreInfo />}
     </div>
   );
 }

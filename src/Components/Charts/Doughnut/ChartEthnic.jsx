@@ -24,7 +24,7 @@ ChartJS.register(
   Legend
 );
 
-function ChartEthnic({ config, code }) {
+function ChartEthnic({ config, linkTo }) {
   useEffect(() => {
     const bar = document.querySelector(".cross-div");
     const nav = document.querySelector("nav");
@@ -44,7 +44,7 @@ function ChartEthnic({ config, code }) {
   const chart= () => {
     setChartData({
       labels : labels && labels.length ? labels : ['test'],
-      datasets: [datasets],
+      datasets :[datasets]
     });
     setChartOptions({
       responsive: true,
@@ -63,7 +63,7 @@ function ChartEthnic({ config, code }) {
 
   useEffect(() => {
     chart();
-    }, [labels]);
+    }, [labels, datasets]);
   const toggleState = useSelector((state) => state.topbar.toggler);
 
   return (
@@ -71,7 +71,7 @@ function ChartEthnic({ config, code }) {
       {toggleState ? (
         <Doughnut options={chartOptions} data={chartData} />
       ) : null}
-      {toggleState ? <OtherDetails paragraph={paragraph} /> : null}
+      {toggleState ? <OtherDetails paragraph={paragraph} linkTo={linkTo} /> : null}
     </div>
   );
 }

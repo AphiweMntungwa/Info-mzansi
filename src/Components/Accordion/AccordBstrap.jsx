@@ -10,10 +10,10 @@ function AccordBstrap({ children, config }) {
     <>
       {toggleState ? (
         <Accordion>
-            <Accordion.Item eventKey={config.key}>
-              <Accordion.Header>{config.title} </Accordion.Header>
-              <Accordion.Body>{children}</Accordion.Body>
-            </Accordion.Item>
+          <Accordion.Item eventKey={config.key}>
+            <Accordion.Header>{config.title} </Accordion.Header>
+            <Accordion.Body>{children}</Accordion.Body>
+          </Accordion.Item>
         </Accordion>
       ) : null}
     </>
